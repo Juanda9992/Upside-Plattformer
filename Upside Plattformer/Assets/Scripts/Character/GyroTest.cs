@@ -19,6 +19,10 @@ public class GyroTest : MonoBehaviour
     void Update()
     {
         currentSpeed = Input.acceleration.x * sensitivity;
-        rb.AddForce(new Vector2(currentSpeed,0));
+    }
+
+    void FixedUpdate()
+    {
+        rb.AddForce(new Vector2(currentSpeed,0));    
     }
 }
