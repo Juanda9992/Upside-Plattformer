@@ -37,4 +37,6 @@ public class PlattformSpawner : MonoBehaviour
         currentX = Random.Range(minX,maxX);
         Instantiate(plattformPrefab,new Vector2(transform.position.x - currentX, transform.position.y),Quaternion.identity);
     }
+
+
 }

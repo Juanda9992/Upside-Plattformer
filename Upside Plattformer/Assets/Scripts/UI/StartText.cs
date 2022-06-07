@@ -7,6 +7,8 @@ public class StartText : MonoBehaviour
 {
     public TextMeshProUGUI text;
 
+    private GyroTest gyro;
+
     private float secondsToStart = 3;
     private float currentSecond = 1;
 
@@ -17,6 +19,10 @@ public class StartText : MonoBehaviour
 
     private bool gameStarted = false;
 
+    void Start()
+    {
+        gyro = GameObject.FindObjectOfType<GyroTest>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -44,5 +50,10 @@ public class StartText : MonoBehaviour
             }
         }
 
+    }
+
+    public void UpdateText()
+    {
+        text.text = gyro.score.ToString();
     }
 }

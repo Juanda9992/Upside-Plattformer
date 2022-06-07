@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GyroTest : MonoBehaviour
 {   
+    public int score;
     [SerializeField]
     private float currentSpeed, sensitivity;
     private Rigidbody2D rb;
+
+    public UnityEvent onScoreIncreased;
+    public delegate void onScore();
+    public static event onScore onScored;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +29,18 @@ public class GyroTest : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddForce(new Vector2(currentSpeed,0));    
+        rb.AddForce(new Vector2(currentSpeed,0));
+            
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("SCORE");
+        if(other.CompareTag("Points"))
+        {
+            score++;
+            onScoreIncreased?.Invoke();
+            onScored?.Invoke();
+        }
     }
 }
