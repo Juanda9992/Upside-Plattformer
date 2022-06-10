@@ -14,6 +14,9 @@ public class GyroTest : MonoBehaviour
     public UnityEvent onScoreIncreased;
     public delegate void onScore();
     public static event onScore onScored;
+
+    [SerializeField]
+    private GameObject particle;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +38,9 @@ public class GyroTest : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("SCORE");
         if(other.CompareTag("Points"))
         {
+            Instantiate(particle,transform.position,Quaternion.identity);
             score++;
             onScoreIncreased?.Invoke();
             onScored?.Invoke();

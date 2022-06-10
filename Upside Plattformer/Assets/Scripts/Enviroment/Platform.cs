@@ -8,7 +8,6 @@ public class Platform : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer[] sRenderer;
-
     [SerializeField]
     private float speed;
     // Start is called before the first frame update
