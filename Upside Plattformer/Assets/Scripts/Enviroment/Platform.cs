@@ -35,10 +35,17 @@ public class Platform : MonoBehaviour
 
     void OnEnable()
     {
+        Scene_Loader.onRestarted += EraseExistingPlatforms;
         GyroTest.onScored += UpdateColor;
     }
     void OnDisable()
     {
+        Scene_Loader.onRestarted -= EraseExistingPlatforms;
         GyroTest.onScored -= UpdateColor;
+    }
+
+    private void EraseExistingPlatforms()
+    {
+        Destroy(this.gameObject);
     }
 }

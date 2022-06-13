@@ -10,6 +10,7 @@ public class GyroTest : MonoBehaviour
     [SerializeField]
     private float currentSpeed, sensitivity;
     private Rigidbody2D rb;
+    private Vector3 firstPosition;
 
     public UnityEvent onScoreIncreased;
     public delegate void onScore();
@@ -20,6 +21,7 @@ public class GyroTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        firstPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
         Debug.Log(Screen.orientation);
     }
@@ -45,5 +47,20 @@ public class GyroTest : MonoBehaviour
             onScoreIncreased?.Invoke();
             onScored?.Invoke();
         }
+    }
+
+    private void ResetStats()
+    {
+        transform.position = firstPosition;
+        score = 0;
+    }
+
+    void OnEnable()
+    {
+        Scene_Loader.onRestarted+= ResetStats;
+    }
+    void OnDisable()
+    {
+        Scene_Loader.onRestarted-= ResetStats;
     }
 }

@@ -21,15 +21,19 @@ public class PlattformSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentTimeBetweenSpawn > 0)
+        if(!Scene_Loader.hasLosed)
         {
-            currentTimeBetweenSpawn-=Time.deltaTime;
+            if(currentTimeBetweenSpawn > 0)
+            {
+                currentTimeBetweenSpawn-=Time.deltaTime;
+            }
+            else
+            {
+                currentTimeBetweenSpawn = timeBetweenSpawn;
+                SpawnPlatform();
+            }
         }
-        else
-        {
-            currentTimeBetweenSpawn = timeBetweenSpawn;
-            SpawnPlatform();
-        }
+
     }
 
     private void SpawnPlatform()
@@ -37,6 +41,23 @@ public class PlattformSpawner : MonoBehaviour
         currentX = Random.Range(minX,maxX);
         Instantiate(plattformPrefab,new Vector2(transform.position.x - currentX, transform.position.y),Quaternion.identity);
     }
+
+    private void ResetTimer()
+    {
+        currentTimeBetweenSpawn = 2.1f;
+    }
+
+    private void OnEnable() 
+    {
+        Scene_Loader.onRestarted += ResetTimer;    
+    }
+
+    void OnDisable()
+    {
+        Scene_Loader.onRestarted -= ResetTimer;
+    }
+
+
 
 
 }

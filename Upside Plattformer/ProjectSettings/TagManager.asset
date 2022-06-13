@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Main
   - Points
+  - TextScore
   layers:
   - Default
   - TransparentFX

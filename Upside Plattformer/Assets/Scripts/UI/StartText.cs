@@ -14,6 +14,7 @@ public class StartText : MonoBehaviour
 
     [SerializeField]
     private GameObject firstPlaftorm;
+    private Vector3 firstPlatformPosition;
     [SerializeField]
     private float ascendSpeed= 2;
 
@@ -22,17 +23,19 @@ public class StartText : MonoBehaviour
     void Start()
     {
         gyro = GameObject.FindObjectOfType<GyroTest>();
+        firstPlatformPosition = firstPlaftorm.transform.position;
     }
     // Update is called once per frame
     void Update()
     {
         if(!gameStarted)
         {
+            text.text = secondsToStart.ToString();
             if(currentSecond < 0)
             {
                 currentSecond = 1;
                 secondsToStart--;
-                text.text = secondsToStart.ToString();
+                
             }
             else
             {
@@ -55,5 +58,20 @@ public class StartText : MonoBehaviour
     public void UpdateText()
     {
         text.text = gyro.score.ToString();
+    }
+
+    private void ResetStats()
+    {
+        firstPlaftorm.SetActive(true);
+        firstPlaftorm.transform.position = firstPlatformPosition;
+        secondsToStart = 3;
+        currentSecond = 1;
+        gameStarted = false;
+    }
+
+
+    void OnEnable()
+    {
+        Scene_Loader.onRestarted += ResetStats;
     }
 }

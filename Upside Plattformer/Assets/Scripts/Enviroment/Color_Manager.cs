@@ -10,8 +10,9 @@ public class Color_Manager : MonoBehaviour
     public Color[] colors;
     public Color nextColor;
     public SpriteRenderer spriteRenderer;
-    void Start()
+    void Awake()
     {
+        ChangeColors();
         spriteRenderer = GetComponent<SpriteRenderer>();
         manager = this;
     }
@@ -20,6 +21,15 @@ public class Color_Manager : MonoBehaviour
         nextColor = colors[Random.Range(0,colors.Length-1)];
         //spriteRenderer.DOColor(nextColor,0.7f).SetEase(Ease.OutQuart);
             
+    }
+    
+    void OnEnable()
+    {
+        Scene_Loader.onRestarted += ChangeColors;
+    }
+    void OnDisable()
+    {
+        Scene_Loader.onRestarted -= ChangeColors;
     }
 }
 
