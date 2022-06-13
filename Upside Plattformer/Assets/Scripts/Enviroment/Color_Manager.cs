@@ -25,10 +25,12 @@ public class Color_Manager : MonoBehaviour
     
     void OnEnable()
     {
+        Debug.Log("ENabled)");
         Scene_Loader.onRestarted += ChangeColors;
     }
     void OnDisable()
     {
+        Debug.Log("Disabled");
         Scene_Loader.onRestarted -= ChangeColors;
     }
 }

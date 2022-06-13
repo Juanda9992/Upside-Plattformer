@@ -49,7 +49,7 @@ public class StartText : MonoBehaviour
             else
             {   
                 gameStarted = true;
-                firstPlaftorm.SetActive(false);
+                firstPlaftorm.transform.position = Vector2.one * 100;
             }
         }
 
@@ -62,7 +62,6 @@ public class StartText : MonoBehaviour
 
     private void ResetStats()
     {
-        firstPlaftorm.SetActive(true);
         firstPlaftorm.transform.position = firstPlatformPosition;
         secondsToStart = 3;
         currentSecond = 1;

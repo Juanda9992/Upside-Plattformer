@@ -9,6 +9,7 @@ public class FirstPlatform_Color : MonoBehaviour
     void Start()
     {
         sRenderer = GetComponent<SpriteRenderer>();
+        UpdateColor();
     }
 
     private void UpdateColor()
