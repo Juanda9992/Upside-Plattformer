@@ -16,6 +16,10 @@ public class GyroTest : MonoBehaviour
     public delegate void onScore();
     public static event onScore onScored;
 
+    [HideInInspector]
+    public bool collision = false;
+    public float pointsInARow = 0;
+
     [SerializeField]
     private GameObject particle;
     // Start is called before the first frame update
@@ -42,9 +46,12 @@ public class GyroTest : MonoBehaviour
     {
         if(other.CompareTag("Points"))
         {
+
+            IncreaseScore();
             Sound_Manager.PlaySound("point");
             Instantiate(particle,transform.position,Quaternion.identity);
-            score++;
+
+            
             onScoreIncreased?.Invoke();
             onScored?.Invoke();
         }
@@ -56,6 +63,19 @@ public class GyroTest : MonoBehaviour
         score = 0;
     }
 
+    private void IncreaseScore()
+    {
+        pointsInARow ++;
+        if(pointsInARow >1)
+        {
+            score+= 2;
+        }
+        else
+        {
+            score++;
+        }
+    }
+
     void OnEnable()
     {
         Scene_Loader.onRestarted+= ResetStats;
@@ -63,5 +83,16 @@ public class GyroTest : MonoBehaviour
     void OnDisable()
     {
         Scene_Loader.onRestarted-= ResetStats;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        collision = true;
+        pointsInARow = 0;
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        collision = false;
     }
 }

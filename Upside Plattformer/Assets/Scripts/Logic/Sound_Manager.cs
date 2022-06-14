@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sound_Manager : MonoBehaviour
 {
+    private GyroTest player;
     public static Sound_Manager soundManager;
 
     private static AudioSource source; 
@@ -13,6 +14,8 @@ public class Sound_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GyroTest.onScored += PitchAudio;
+        player = GameObject.FindObjectOfType<GyroTest>();
         point = Resources.Load<AudioClip>("Point");
         lose = Resources.Load<AudioClip>("Lose");
         soundManager = this;
@@ -34,5 +37,21 @@ public class Sound_Manager : MonoBehaviour
             default:
             break;
         }
+    }
+
+    public void PitchAudio()
+    {
+        float pitch = player.pointsInARow /10;
+        Debug.Log(player.pointsInARow / 10);
+        if(player.pointsInARow >= 1)
+        {
+            
+            source.pitch = (player.pointsInARow / 10) + 1;
+        }
+        else
+        {
+            source.pitch = 1;
+        }
+        
     }
 }
