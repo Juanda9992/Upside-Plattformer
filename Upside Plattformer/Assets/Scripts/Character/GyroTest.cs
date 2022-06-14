@@ -42,6 +42,7 @@ public class GyroTest : MonoBehaviour
     {
         if(other.CompareTag("Points"))
         {
+            Sound_Manager.PlaySound("point");
             Instantiate(particle,transform.position,Quaternion.identity);
             score++;
             onScoreIncreased?.Invoke();

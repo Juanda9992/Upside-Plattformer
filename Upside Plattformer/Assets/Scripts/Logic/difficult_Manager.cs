@@ -8,12 +8,14 @@ public class difficult_Manager : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+
             onDeath();
         }
     }
 
     private void onDeath()
     {
+        Sound_Manager.PlaySound("lose");
         Scene_Loader.hasLosed = true;
         Scene_Loader.RestartLevel();
     }
