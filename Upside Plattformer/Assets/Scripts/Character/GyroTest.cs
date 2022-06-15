@@ -14,6 +14,9 @@ public class GyroTest : MonoBehaviour
 
     public UnityEvent onScoreIncreased;
     public delegate void onScore();
+    public delegate void onGoalReached();
+
+    public static event onGoalReached onReachedGoal;
     public static event onScore onScored;
 
     [HideInInspector]
@@ -73,6 +76,11 @@ public class GyroTest : MonoBehaviour
         else
         {
             score++;
+        }
+
+        if(score % 50 == 0)
+        {
+            onReachedGoal?.Invoke();
         }
     }
 

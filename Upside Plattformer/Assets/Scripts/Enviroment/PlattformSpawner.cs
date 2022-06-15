@@ -6,8 +6,7 @@ public class PlattformSpawner : MonoBehaviour
 {
     [SerializeField] 
     private GameObject plattformPrefab;
-    [SerializeField]
-    private float timeBetweenSpawn;
+    public float timeBetweenSpawn;
     private float currentTimeBetweenSpawn;
     private float minX = 2,maxX = -2f,currentX;
 
@@ -15,13 +14,13 @@ public class PlattformSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTimeBetweenSpawn = 2.1f;
+        currentTimeBetweenSpawn = 1.9f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!Scene_Loader.hasLosed)
+        if(Scene_Loader.hasLosed)
         {
             if(currentTimeBetweenSpawn > 0)
             {
@@ -44,12 +43,19 @@ public class PlattformSpawner : MonoBehaviour
 
     private void ResetTimer()
     {
-        currentTimeBetweenSpawn = 2.1f;
+        currentTimeBetweenSpawn = 1.9f;
+        timeBetweenSpawn = 0.9f;
+    }
+
+    private void IncreaseDifficult()
+    {
+        timeBetweenSpawn -= 0.05f;
     }
 
     private void OnEnable() 
     {
         Scene_Loader.onRestarted += ResetTimer;    
+        GyroTest.onReachedGoal += IncreaseDifficult;
     }
 
     void OnDisable()

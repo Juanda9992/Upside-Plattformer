@@ -7,12 +7,14 @@ using DG.Tweening;
 public class Platform : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private PlattformSpawner spawner;
     private SpriteRenderer[] sRenderer;
     [SerializeField]
     private float speed;
     // Start is called before the first frame update
     void Start()
     {
+        spawner = FindObjectOfType<PlattformSpawner>();
         sRenderer = GetComponentsInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         UpdateColor();
@@ -22,6 +24,7 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        speed = (2 +  (((spawner.timeBetweenSpawn * 2) /0.9f)-2));
         rb.velocity = Vector2.up * speed;
     }
 

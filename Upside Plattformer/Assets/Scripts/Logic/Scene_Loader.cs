@@ -14,4 +14,12 @@ public class Scene_Loader : MonoBehaviour
         hasLosed = false;
         onRestarted?.Invoke();
     }
+
+    void Update()
+    {
+        if(Input.GetMouseButtonDown(0) && !hasLosed)
+        {
+            hasLosed = !hasLosed;
+        }
+    }
 }
