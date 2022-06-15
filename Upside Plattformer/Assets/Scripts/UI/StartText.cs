@@ -18,7 +18,7 @@ public class StartText : MonoBehaviour
     [SerializeField]
     private float ascendSpeed= 2;
 
-    private bool gameStarted = false;
+    private bool gameStarted;
 
     void Start()
     {
@@ -28,9 +28,10 @@ public class StartText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!gameStarted)
+        gameStarted = Scene_Loader.hasLosed;
+        if(gameStarted)
         {
-            text.text = secondsToStart.ToString();
+            text.fontSize = 800;
             if(currentSecond < 0)
             {
                 currentSecond = 1;
@@ -42,15 +43,21 @@ public class StartText : MonoBehaviour
                 currentSecond-= Time.deltaTime;
             }
 
-            if(secondsToStart > 0)
+            if(secondsToStart >= 0)
             {
+                text.text = secondsToStart.ToString();
                 firstPlaftorm.transform.Translate(Vector2.up * ascendSpeed * Time.deltaTime);
             }
             else
             {   
-                gameStarted = true;
+                gameStarted = false;
                 firstPlaftorm.transform.position = Vector2.one * 100;
             }
+        }
+        else if(!gameStarted && secondsToStart > 0)
+        {
+            text.fontSize = 200;
+            text.text = "TOUCH THE SCREEN TO PLAY";
         }
 
     }
