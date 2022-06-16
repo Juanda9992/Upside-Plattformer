@@ -22,15 +22,17 @@ public class GyroTest : MonoBehaviour
     [HideInInspector]
     public bool collision = false;
     public float pointsInARow = 0;
+    [HideInInspector]
+    public int maxScore;
 
     [SerializeField]
     private GameObject particle;
     // Start is called before the first frame update
     void Start()
     {
+        maxScore = PlayerPrefs.GetInt("MaxScore");
         firstPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log(Screen.orientation);
     }
 
     // Update is called once per frame
@@ -81,6 +83,11 @@ public class GyroTest : MonoBehaviour
         if(score % 50 == 0)
         {
             onReachedGoal?.Invoke();
+        }
+        if(maxScore < score)
+        {
+            maxScore = score;
+            PlayerPrefs.SetInt("MaxScore",maxScore);
         }
     }
 

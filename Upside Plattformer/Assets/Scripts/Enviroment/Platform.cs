@@ -51,4 +51,10 @@ public class Platform : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
+    private void OnDestroy()
+    {
+        DOTween.Kill(this);
+        
+    }
 }

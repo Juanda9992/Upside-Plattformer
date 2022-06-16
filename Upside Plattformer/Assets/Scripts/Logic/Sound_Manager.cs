@@ -7,7 +7,7 @@ public class Sound_Manager : MonoBehaviour
     private GyroTest player;
     public static Sound_Manager soundManager;
 
-    private static AudioSource source; 
+    public static AudioSource source; 
     private static AudioClip lose,point;
 
 
