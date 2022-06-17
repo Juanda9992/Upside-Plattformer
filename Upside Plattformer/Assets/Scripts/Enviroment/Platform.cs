@@ -8,6 +8,7 @@ public class Platform : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PlattformSpawner spawner;
+    [SerializeField]
     private SpriteRenderer[] sRenderer;
     [SerializeField]
     private float speed;
@@ -15,8 +16,8 @@ public class Platform : MonoBehaviour
     void Start()
     {
         spawner = FindObjectOfType<PlattformSpawner>();
-        sRenderer = GetComponentsInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+                
         UpdateColor();
         Destroy(gameObject,8);
     }

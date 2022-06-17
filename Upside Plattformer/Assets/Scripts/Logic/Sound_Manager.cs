@@ -14,12 +14,12 @@ public class Sound_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GyroTest.onScored += PitchAudio;
         player = GameObject.FindObjectOfType<GyroTest>();
         point = Resources.Load<AudioClip>("Point");
         lose = Resources.Load<AudioClip>("Lose");
         soundManager = this;
         source = GetComponent<AudioSource>();
+        GyroTest.onScored += PitchAudio;
     }
 
     public static void PlaySound(string name)
@@ -53,5 +53,10 @@ public class Sound_Manager : MonoBehaviour
             source.pitch = 1;
         }
         
+    }
+
+    void OnEnable()
+    {
+        GyroTest.onScored += PitchAudio;
     }
 }

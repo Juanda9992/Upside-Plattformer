@@ -20,6 +20,7 @@ public class Data_Loader : MonoBehaviour
         UpdateTextScore();        
     }
 
+[ContextMenu ("ERASEDATA")]
     public void DeleteData()
     {
         PlayerPrefs.DeleteAll();
@@ -27,7 +28,9 @@ public class Data_Loader : MonoBehaviour
     }
 
     private void UpdateTextScore()
-    {   Debug.Log(PlayerPrefs.GetInt("MaxScore"));
+    {   
+        maxScoreText.gameObject.SetActive(true);
+        Debug.Log(PlayerPrefs.GetInt("MaxScore"));
         maxScoreText.text = "Max Score: " + PlayerPrefs.GetInt("MaxScore");
     }
 

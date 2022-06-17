@@ -15,11 +15,9 @@ public class Scene_Loader : MonoBehaviour
         onRestarted?.Invoke();
     }
 
-    void Update()
+    public static void ChangeBool(bool changeBool)
     {
-        if(Input.GetMouseButtonDown(0) && !hasLosed)
-        {
-            hasLosed = !hasLosed;
-        }
+        hasLosed = changeBool;
     }
+
 }

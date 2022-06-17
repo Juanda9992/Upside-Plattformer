@@ -38,11 +38,13 @@ public class GyroTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //The formula for the player movement
         currentSpeed = Input.acceleration.x * sensitivity;
     }
 
     void FixedUpdate()
     {
+        //Actually applies the force depending the device rotation
         rb.AddForce(new Vector2(currentSpeed,0));
             
     }

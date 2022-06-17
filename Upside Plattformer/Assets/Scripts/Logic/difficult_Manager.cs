@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class difficult_Manager : MonoBehaviour
-{
+{   
+    public delegate void onDead();
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
