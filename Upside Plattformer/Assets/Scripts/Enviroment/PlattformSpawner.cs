@@ -14,7 +14,7 @@ public class PlattformSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTimeBetweenSpawn = 1.9f;
+        currentTimeBetweenSpawn = 1.8f;
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class PlattformSpawner : MonoBehaviour
 
     private void IncreaseDifficult()
     {
-        timeBetweenSpawn -= 0.05f;
+        timeBetweenSpawn -= 0.06f;
     }
 
     private void OnEnable() 
