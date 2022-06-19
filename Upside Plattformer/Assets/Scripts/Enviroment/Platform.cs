@@ -25,7 +25,7 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        speed = (2 * 0.9f) / (spawner.timeBetweenSpawn);
+        speed = (2.3f * 0.75f) / (spawner.timeBetweenSpawn);
         rb.velocity = Vector2.up * speed;
     }
 

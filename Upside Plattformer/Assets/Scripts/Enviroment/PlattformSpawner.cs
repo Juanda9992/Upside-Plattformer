@@ -43,8 +43,8 @@ public class PlattformSpawner : MonoBehaviour
 
     private void ResetTimer()
     {
-        currentTimeBetweenSpawn = 1.9f;
-        timeBetweenSpawn = 0.9f;
+        currentTimeBetweenSpawn = 1.8f;
+        timeBetweenSpawn = 0.8f;
     }
 
     private void IncreaseDifficult()

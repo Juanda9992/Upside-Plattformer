@@ -73,14 +73,7 @@ public class GyroTest : MonoBehaviour
     private void IncreaseScore()
     {
         pointsInARow ++;
-        if(pointsInARow >1)
-        {
-            score+= 2;
-        }
-        else
-        {
-            score++;
-        }
+        score+= Mathf.FloorToInt(pointsInARow);
 
         if(score % 50 == 0)
         {
