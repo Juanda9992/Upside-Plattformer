@@ -5,7 +5,7 @@ using TMPro;
 
 public class StartText : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI initialLabel,scoreText;
 
     private GyroTest gyro;
 
@@ -31,7 +31,11 @@ public class StartText : MonoBehaviour
         gameStarted = Scene_Loader.hasLosed;
         if(gameStarted)
         {
-            text.fontSize = 800;
+            scoreText.gameObject.SetActive(true);
+            scoreText.fontSize = 800;
+
+            initialLabel.gameObject.SetActive(false);
+
             if(currentSecond < 0)
             {
                 currentSecond = 1;
@@ -45,7 +49,7 @@ public class StartText : MonoBehaviour
 
             if(secondsToStart >= 0)
             {
-                text.text = secondsToStart.ToString();
+                scoreText.text = secondsToStart.ToString();
                 firstPlaftorm.transform.Translate(Vector2.up * ascendSpeed * Time.deltaTime);
             }
             else
@@ -54,17 +58,13 @@ public class StartText : MonoBehaviour
                 firstPlaftorm.transform.position = Vector2.one * 100;
             }
         }
-        else if(!gameStarted && secondsToStart > 0)
-        {
-            text.fontSize = 200;
-            text.text = "TOUCH THE SCREEN TO PLAY";
-        }
 
     }
 
     public void UpdateText()
     {
-        text.text = gyro.score.ToString();
+        
+        scoreText.text = gyro.score.ToString();
     }
 
     private void ResetStats()
