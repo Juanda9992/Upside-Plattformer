@@ -45,10 +45,10 @@ public class GyroTest : MonoBehaviour
     {
         #if UNITY_EDITOR
 
-        currentSpeed = pcActions.action.ReadValue<float>() * sensitivity;
+        currentSpeed = pcActions.action.ReadValue<float>() * sensitivity * Time.deltaTime;
         #else
         //The formula for the player movement
-        currentSpeed = Input.acceleration.x * sensitivity;
+        currentSpeed = Input.acceleration.x * sensitivity * Time.deltaTime;
         #endif
     }
 

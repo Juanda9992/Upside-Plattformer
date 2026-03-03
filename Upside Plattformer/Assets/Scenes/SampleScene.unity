@@ -581,7 +581,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2.26
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 2
   m_Material: {fileID: 0}
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   currentSpeed: 0
-  sensitivity: 25
+  sensitivity: 1100
   onScoreIncreased:
     m_PersistentCalls:
       m_Calls:
@@ -755,6 +755,7 @@ MonoBehaviour:
   pointsInARow: 0
   maxScore: 0
   particle: {fileID: 1055374670184581143, guid: 7272c2a60ca496a488227c88fc088d66, type: 3}
+  pcActions: {fileID: 7698727552736703703, guid: fca3e3dbcea659f4a9129c33c8027257, type: 3}
 --- !u!114 &290443035
 MonoBehaviour:
   m_ObjectHideFlags: 0
