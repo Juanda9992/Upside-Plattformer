@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
-
+using UnityEngine.InputSystem;
 public class GyroTest : MonoBehaviour
 {   
     public int score;
@@ -27,19 +24,32 @@ public class GyroTest : MonoBehaviour
 
     [SerializeField]
     private GameObject particle;
+
+    #if UNITY_EDITOR
+    [SerializeField] private InputActionReference pcActions;
+    #endif
     // Start is called before the first frame update
     void Start()
     {
         maxScore = PlayerPrefs.GetInt("MaxScore");
         firstPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
+
+        #if UNITY_EDITOR
+        pcActions.asset.Enable();
+        #endif
     }
 
     // Update is called once per frame
     void Update()
     {
+        #if UNITY_EDITOR
+
+        currentSpeed = pcActions.action.ReadValue<float>() * sensitivity;
+        #else
         //The formula for the player movement
         currentSpeed = Input.acceleration.x * sensitivity;
+        #endif
     }
 
     void FixedUpdate()
