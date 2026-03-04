@@ -49,7 +49,7 @@ public class PlattformSpawner : MonoBehaviour
 
     private void IncreaseDifficult()
     {
-        timeBetweenSpawn -= 0.06f;
+        timeBetweenSpawn -= 0.1f;
     }
 
     private void OnEnable() 
