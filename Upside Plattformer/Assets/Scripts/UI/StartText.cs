@@ -66,11 +66,11 @@ public class StartText : MonoBehaviour
         
         scoreText.text = gyro.score.ToString();
 
-        if(gyro.pointsInARow == 2)
+        if(gyro.pointsInARow >= 2)
         {
             scoreText.color = Color.yellow;
         }
-        else if(gyro.pointsInARow > 5)
+        else if(gyro.pointsInARow > 4)
         {
             scoreText.color = Color.red;
         }
@@ -83,6 +83,8 @@ public class StartText : MonoBehaviour
     private void ResetStats()
     {
         firstPlaftorm.transform.position = firstPlatformPosition;
+        initialLabel.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(false);
         secondsToStart = 3;
         currentSecond = 1;
         gameStarted = false;
