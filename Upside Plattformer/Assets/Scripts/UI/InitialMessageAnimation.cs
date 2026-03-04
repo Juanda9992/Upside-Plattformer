@@ -9,7 +9,12 @@ public class InitialMessageAnimation : MonoBehaviour
     [SerializeField] private float timeToAnimate;
     [SerializeField] private TextMeshProUGUI textToAnimate;
     [SerializeField] private Color32 randomColor;
-    IEnumerator Start()
+    void OnEnable()
+    {
+        StartCoroutine("AnimateText");    
+    }
+
+    IEnumerator AnimateText()
     {
         randomColor = Random.ColorHSV(0.5f, 1, 0.5f, 1, 0.5f, 1);
 
@@ -21,4 +26,5 @@ public class InitialMessageAnimation : MonoBehaviour
             yield return new WaitForSeconds(timeToAnimate);
         }
     }
+
 }
