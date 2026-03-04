@@ -65,6 +65,19 @@ public class StartText : MonoBehaviour
     {
         
         scoreText.text = gyro.score.ToString();
+
+        if(gyro.pointsInARow == 2)
+        {
+            scoreText.color = Color.yellow;
+        }
+        else if(gyro.pointsInARow > 5)
+        {
+            scoreText.color = Color.red;
+        }
+        else
+        {
+            scoreText.color = Color.white;
+        }
     }
 
     private void ResetStats()

@@ -1,21 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Color : MonoBehaviour
 {
-    private FlexibleColorPicker picker;
-    private SpriteRenderer playerRenderer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        picker = GameObject.FindObjectOfType<FlexibleColorPicker>();
-        playerRenderer = GetComponent<SpriteRenderer>();
 
+    private SpriteRenderer playerRenderer;
+    void Awake()
+    {
+        playerRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void changeColor()
+    public void ChangeColor(Color color)
     {
-        playerRenderer.color = picker.color;
+        playerRenderer.color = color;
     }
 }

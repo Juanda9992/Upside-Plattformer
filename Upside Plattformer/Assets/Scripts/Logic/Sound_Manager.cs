@@ -39,14 +39,18 @@ public class Sound_Manager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        Debug.Log(source.volume);
+    }
+
     public void PitchAudio()
     {
-        float pitch = player.pointsInARow /10;
-        Debug.Log(player.pointsInARow / 10);
+        float pitch = (player.pointsInARow /10)+1;
         if(player.pointsInARow >= 1)
         {
             
-            source.pitch = (player.pointsInARow / 10) + 1;
+            source.pitch = pitch;
         }
         else
         {
