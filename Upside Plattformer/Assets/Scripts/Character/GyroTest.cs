@@ -25,7 +25,7 @@ public class GyroTest : MonoBehaviour
     [SerializeField]
     private GameObject particle;
 
-    #if UNITY_EDITOR
+    #if UNITY_EDITOR || UNITY_WEBGL
     [SerializeField] private InputActionReference pcActions;
     #endif
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class GyroTest : MonoBehaviour
         firstPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
 
-        #if UNITY_EDITOR
+        #if UNITY_EDITOR || UNITY_WEBGL
         pcActions.asset.Enable();
         #endif
     }
@@ -43,7 +43,7 @@ public class GyroTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #if UNITY_EDITOR
+        #if UNITY_EDITOR || UNITY_WEBGL
 
         currentSpeed = pcActions.action.ReadValue<float>() * sensitivity * Time.deltaTime;
         #else
